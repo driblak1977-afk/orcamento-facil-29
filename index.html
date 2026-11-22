@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orçamento Fácil do Adri</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif;transition:none!important;animation:none!important}
+*:hover,*:focus,*:active{opacity:1!important;filter:none!important;transform:none!important}
+body{background:#111;color:#fff}
+.top-venda{background:#ffcc00;color:#000;text-align:center;padding:10px 8px;font-size:13px;font-weight:900}
+header{background:#000;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+header b{font-size:20px} header b span{color:#ffcc00}
+.tabs{display:flex;gap:8px;padding:12px;overflow:auto;background:#111}
+.tabs button{white-space:nowrap;padding:12px 16px;border-radius:30px;border:2px solid #fff;background:#fff;font-weight:900;cursor:pointer;font-size:14px;color:#000}
+.tabs button.active{background:#ff6b00!important;color:#fff!important;border-color:#ff6b00!important}
+.box{background:#fff;margin:12px;padding:16px;border-radius:16px;color:#000}
+.box:hover{background:#fff!important;color:#000!important}
+h2{font-size:19px;margin-bottom:12px;color:#000}
+label{display:block;font-size:13px;font-weight:900;color:#000;text-transform:uppercase;margin:12px 0 5px}
+input,select{width:100%;padding:14px;background:#fff!important;color:#000!important;font-size:19px;font-weight:800;border:2px solid #000;border-radius:12px;outline:none}
+input::placeholder{color:#555!important}
+input:focus{border:3px solid #ff6b00!important;background:#fff!important;color:#000!important}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{width:100%;padding:15px;border:none;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer;margin-top:12px}
+.btn-orange{background:#ff6b00!important;color:#fff!important}
+.btn-black{background:#000!important;color:#fff!important}
+.btn-green{background:#25d366!important;color:#fff!important}
+.btn-gray{background:#eee!important;color:#000!important}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.opt button{padding:14px;border-radius:12px;border:2px solid #000;background:#eee!important;font-weight:900;cursor:pointer;color:#000!important;font-size:13px}
+.opt button.active{background:#ff6b00!important;color:#fff!important}
+.prof{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.prof button{padding:14px;border-radius:12px;border:2px solid #000;background:#eee!important;font-weight:900;cursor:pointer;color:#000!important}
+.prof button.active{background:#ff6b00!important;color:#fff!important}
+.result{background:#fff8dc!important;border:2px solid #ffcc00;border-radius:14px;padding:16px;margin-top:12px;color:#000!important}
+.result:hover{background:#fff8dc!important;color:#000!important}
+.total{font-size:28px;font-weight:900;color:#000}
+.card-orc{background:#fff!important;border:2px solid #000;border-radius:16px;padding:16px;margin-top:12px;color:#000!important}
+.card-orc:hover{background:#fff!important;color:#000!important}
+.card-orc h3{font-size:20px;color:#000}
+.card-orc p{font-size:15px;color:#000;font-weight:600;line-height:1.6}
+.badge{display:inline-block;background:#ffcc00!important;color:#000!important;padding:6px 10px;border-radius:20px;font-weight:900;font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+table td,table th{border:1px solid #ddd;padding:10px;text-align:left;color:#000!important;font-weight:700;background:#fff!important}
+.hist-card{background:#fff!important;color:#000!important;border:2px solid #ddd;border-radius:12px;padding:12px;margin-bottom:10px}
+.hist-card:hover{background:#fff!important;color:#000!important}
+.hist-card b{color:#000!important}
+.btn-pendente{background:#ffcc00!important;color:#000!important;padding:8px 12px;border-radius:8px;border:1px solid #000;font-weight:800;cursor:pointer}
+.btn-aprovado{background:#fff!important;color:#000!important;padding:8px 12px;border-radius:8px;border:1px solid #000;font-weight:800;cursor:pointer}
+.btn-pago{background:#fff!important;color:#000!important;padding:8px 12px;border-radius:8px;border:1px solid #000;font-weight:800;cursor:pointer}
+.btn-wpp{background:#25d366!important;color:#fff!important;padding:8px 12px;border-radius:8px;border:none;font-weight:800;cursor:pointer}
+.btn-excluir{background:#ff3b30!important;color:#fff!important;padding:8px 12px;border-radius:8px;border:none;font-weight:800;cursor:pointer}
+.btn-usar{background:#ffcc00!important;color:#000!important;padding:8px 12px;border-radius:8px;border:1px solid #000;font-weight:800;cursor:pointer}
+footer{text-align:center;padding:20px;color:#aaa;font-size:13px}
+.wpp-float{position:fixed;bottom:18px;right:18px;background:#25d366!important;color:#fff!important;padding:14px 18px;border-radius:50px;font-weight:900;text-decoration:none;font-size:14px}
+::selection{background:#ff6b00!important;color:#fff!important}
+</style></head><body>
+<div class="top-venda">FALA COM ADRIANO - 19 99893-2588 | QUER UM APP TIPO ESSE POR SÓ R$29?</div>
+<header><div><b>ORÇAMENTO <span>FÁCIL DO ADRI</span></b><br><small style="color:#ddd">PARA TRABALHADORES - MEDIR E COBRAR SEM ERRAR</small></div><div style="text-align:right;font-size:12px;font-weight:800">Louveira - SP<br>19 99893-2588</div></header>
+<div class="tabs"><button id="t-medir" class="active" onclick="show('medir')">📏 MEDIR</button><button id="t-orc" onclick="show('orc')">🧾 ORÇAMENTO</button><button id="t-hist" onclick="show('hist')">📋 HISTÓRICO</button><button id="t-precos" onclick="show('precos')">💰 PREÇOS</button></div>
+
+<div id="page-medir" class="box">
+<div class="prof"><button id="btn-ped" class="active" onclick="setProf('pedreiro')">🧱 PEDREIRO</button><button id="btn-pin" onclick="setProf('pintor')">🎨 PINTOR</button></div>
+<h2>📏 1 - MEDIR O SERVIÇO</h2>
+<div class="row"><div><label>Comprimento (m)</label><input id="comp" type="number" step="0.1" placeholder="Ex: 4" oninput="calcMedir()"></div><div><label>Largura (m)</label><input id="larg" type="number" step="0.1" placeholder="Ex: 3" oninput="calcMedir()"></div></div>
+<div class="result"><div>Área: <b id="r-area">0 m²</b></div><div>Perímetro: <b id="r-per">0 m</b></div><div id="ped-itens"><div>🧱 Piso: <b id="r-piso">0 m²</b> (com 10% sobra)</div><div>💰 Cimento: <b id="r-cim">0 sacos</b></div><div>🏖️ Areia: <b id="r-areia">0 m³</b></div></div><div id="pin-itens" style="display:none"><div>🎨 Tinta 1 demão: <b id="r-tinta1">0 litros</b></div><div>🎨 Tinta 2 demãos: <b id="r-tinta2">0 litros</b></div><div>🧴 Massa corrida: <b id="r-massa">0 sacos</b></div><div>📄 Lixa: <b id="r-lixa">0 un</b></div></div></div>
+<button class="btn btn-black" onclick="usarArea()">USAR ESSA ÁREA NO ORÇAMENTO →</button>
+</div>
+
+<div id="page-orc" class="box" style="display:none">
+<h2>🧾 2 - FAZER ORÇAMENTO</h2>
+<label>Nome do cliente</label><input id="o-cliente" placeholder="Ex: Maria">
+<label>Telefone do cliente</label><input id="o-tel" placeholder="(19) 99999-9999">
+<label>Serviço</label><select id="o-serv"><option>Pintura</option><option>Piso</option><option>Reboco</option><option>Elétrica</option><option>Encanamento</option><option>Telhado</option><option>Outro</option></select>
+<div class="row"><div><label>Área (m²)</label><input id="o-area" type="number" step="0.1" placeholder="Ex: 12" oninput="calcOrc()"></div><div><label>Preço por m² (R$)</label><input id="o-preco" type="number" step="0.01" placeholder="Ex: 25" oninput="calcOrc()"></div></div>
+<label>Quem compra o material?</label>
+<div class="opt"><button id="btn-cliente" class="active" onclick="setMat('cliente')">👤 CLIENTE COMPRA O MATERIAL</button><button id="btn-eu" onclick="setMat('eu')">🧰 EU LEVO O MATERIAL</button></div>
+<div id="mat-box" style="display:none"><label>Valor do material (R$)</label><input id="o-mat" type="number" step="0.01" placeholder="Ex: 150" oninput="calcOrc()"></div>
+<label>Desconto (R$)</label><input id="o-desc" type="number" step="0.01" placeholder="0" value="0" oninput="calcOrc()">
+<label>Nome do trabalhador</label><input id="o-trab" value="Adriano da Cruz">
+<label>WhatsApp do trabalhador</label><input id="o-wpp" value="19 99893-2588">
+<div class="result"><div>Mão de obra: <b id="r-mao">R$ 0,00</b></div><div id="r-mat-line" style="display:none">Material: <b id="r-mat">R$ 0,00</b></div><div>Desconto: <b id="r-desc">R$ 0,00</b></div><div style="margin-top:8px">TOTAL: <span class="total" id="r-total">R$ 0,00</span></div><div id="r-mat-info" style="margin-top:8px;font-weight:900">MATERIAL POR CONTA DO CLIENTE</div></div>
+<button class="btn btn-orange" onclick="gerar()">✅ GERAR ORÇAMENTO</button>
+<div id="cartao"></div>
+</div>
+
+<div id="page-hist" class="box" style="display:none"><h2>📋 HISTÓRICO</h2><div id="lista-hist"></div><button class="btn btn-gray" onclick="limparHist()">Limpar histórico</button></div>
+
+<div id="page-precos" class="box" style="display:none"><h2>💰 PREÇOS SUGERIDOS</h2><table><tr><th>Serviço</th><th>Preço</th><th></th></tr><tr><td>Pintura</td><td>R$ 25 / m²</td><td><button class="btn-usar" onclick="usarPreco(25,'Pintura')">USAR ESTE PREÇO</button></td></tr><tr><td>Piso</td><td>R$ 45 / m²</td><td><button class="btn-usar" onclick="usarPreco(45,'Piso')">USAR ESTE PREÇO</button></td></tr><tr><td>Reboco</td><td>R$ 35 / m²</td><td><button class="btn-usar" onclick="usarPreco(35,'Reboco')">USAR ESTE PREÇO</button></td></tr><tr><td>Elétrica</td><td>R$ 60 / ponto</td><td><button class="btn-usar" onclick="usarPreco(60,'Elétrica')">USAR ESTE PREÇO</button></td></tr><tr><td>Encanamento</td><td>R$ 80 / ponto</td><td><button class="btn-usar" onclick="usarPreco(80,'Encanamento')">USAR ESTE PREÇO</button></td></tr></table></div>
+
+<footer>ORÇAMENTO FÁCIL DO ADRI - FALA COM ADRIANO - 19 99893-2588<br>Feito pelo Adriano - Louveira SP</footer>
+<a class="wpp-float" href="https://wa.me/5519998932588?text=Ol%C3%A1%20Adri!%20Quero%20um%20app%20por%20R%2429" target="_blank">💬 WhatsApp 19 99893-2588</a>
+<script>
+let modoMat='cliente', prof='pedreiro', ultimo=null;
+function show(p){['medir','orc','hist','precos'].forEach(x=>{document.getElementById('page-'+x).style.display=x===p?'block':'none';document.getElementById('t-'+(x==='orc'?'orc':x)).classList.toggle('active',x===p)}); if(p==='hist') renderHist();}
+function setProf(p){prof=p;document.getElementById('btn-ped').classList.toggle('active',p==='pedreiro');document.getElementById('btn-pin').classList.toggle('active',p==='pintor');document.getElementById('ped-itens').style.display=p==='pedreiro'?'block':'none';document.getElementById('pin-itens').style.display=p==='pintor'?'block':'none';calcMedir();}
+function calcMedir(){let c=parseFloat(document.getElementById('comp').value)||0;let l=parseFloat(document.getElementById('larg').value)||0;let a=c*l;let per=2*(c+l);document.getElementById('r-area').innerText=a.toFixed(2)+' m²';document.getElementById('r-per').innerText=per.toFixed(2)+' m';document.getElementById('r-piso').innerText=(a*1.1).toFixed(2)+' m²';document.getElementById('r-cim').innerText=Math.ceil(a/2)+' sacos';document.getElementById('r-areia').innerText=(a/20).toFixed(2)+' m³';document.getElementById('r-tinta1').innerText=(a/5).toFixed(1)+' litros';document.getElementById('r-tinta2').innerText=(a/5*2).toFixed(1)+' litros';document.getElementById('r-massa').innerText=Math.ceil(a/10)+' sacos';document.getElementById('r-lixa').innerText=Math.ceil(a/10)+' un';}
+function setMat(m){modoMat=m;document.getElementById('btn-cliente').classList.toggle('active',m==='cliente');document.getElementById('btn-eu').classList.toggle('active',m==='eu');document.getElementById('mat-box').style.display=m==='eu'?'block':'none';calcOrc();}
+function calcOrc(){let a=parseFloat(document.getElementById('o-area').value)||0;let p=parseFloat(document.getElementById('o-preco').value)||0;let mat=modoMat==='eu'?(parseFloat(document.getElementById('o-mat').value)||0):0;let d=parseFloat(document.getElementById('o-desc').value)||0;let mao=a*p;let total=mao+mat-d;if(total<0)total=0;document.getElementById('r-mao').innerText='R$ '+mao.toFixed(2).replace('.',',');document.getElementById('r-mat').innerText='R$ '+mat.toFixed(2).replace('.',',');document.getElementById('r-mat-line').style.display=modoMat==='eu'?'block':'none';document.getElementById('r-desc').innerText='R$ '+d.toFixed(2).replace('.',',');document.getElementById('r-total').innerText='R$ '+total.toFixed(2).replace('.',',');document.getElementById('r-mat-info').innerText=modoMat==='cliente'?'MATERIAL POR CONTA DO CLIENTE':'MATERIAL INCLUSO - LEVADO PELO TRABALHADOR';return {area:a,preco:p,mat:mat,desc:d,mao:mao,total:total};}
+function usarArea(){let c=parseFloat(document.getElementById('comp').value)||0;let l=parseFloat(document.getElementById('larg').value)||0;document.getElementById('o-area').value=(c*l).toFixed(2);show('orc');calcOrc();}
+function usarPreco(v,s){document.getElementById('o-preco').value=v;document.getElementById('o-serv').value=s;show('orc');calcOrc();}
+function gerar(){let cli=document.getElementById('o-cliente').value.trim()||'Cliente';let tel=document.getElementById('o-tel').value.trim();let serv=document.getElementById('o-serv').value;let trab=document.getElementById('o-trab').value.trim()||'Adriano da Cruz';let calc=calcOrc();let matTxt=modoMat==='cliente'?'MATERIAL POR CONTA DO CLIENTE':'MATERIAL INCLUSO - LEVADO PELO TRABALHADOR (R$ '+calc.mat.toFixed(2).replace('.',',')+')';ultimo={cli:cli,tel:tel,serv:serv,area:calc.area,preco:calc.preco,mat:calc.mat,desc:calc.desc,mao:calc.mao,total:calc.total,modo:modoMat,trab:trab,data:new Date().toLocaleDateString('pt-BR'),status:'Pendente'};let hist=JSON.parse(localStorage.getItem('orc_hist')||'[]');hist.unshift(ultimo);localStorage.setItem('orc_hist',JSON.stringify(hist));
+document.getElementById('cartao').innerHTML=`<div class="card-orc"><span class="badge">ORÇAMENTO - VÁLIDO 7 DIAS</span><h3>${serv} - ${cli}</h3><p>Cliente: ${cli} ${tel?'- '+tel:''}<br>Serviço: ${serv}<br>Área: ${calc.area} m² x R$ ${calc.preco.toFixed(2).replace('.',',')}<br>Mão de obra: R$ ${calc.mao.toFixed(2).replace('.',',')}<br>${modoMat==='eu'?'Material: R$ '+calc.mat.toFixed(2).replace('.',',')+'<br>':''}Desconto: R$ ${calc.desc.toFixed(2).replace('.',',')}<br><b>${matTxt}</b><br>Trabalhador: ${trab}</p><div style="font-size:26px;font-weight:900;margin:10px 0;color:#000">TOTAL: R$ ${calc.total.toFixed(2).replace('.',',')}</div><button class="btn btn-green" onclick="enviarWpp()">📲 ENVIAR NO WHATSAPP</button></div>`;}
+function enviarWpp(){if(!ultimo)return;let t='Ol%C3%A1%20'+encodeURIComponent(ultimo.cli)+'%20!%20Segue%20seu%20or%C3%A7amento:%0A'+encodeURIComponent(ultimo.serv)+'%20-%20'+ultimo.area+'%20m2%0AMao%20de%20obra%3A%20R%24%20'+ultimo.mao.toFixed(2).replace('.',',')+'%0ATOTAL%3A%20R%24%20'+ultimo.total.toFixed(2).replace('.',',');window.open('https://wa.me/5519998932588?text='+t,'_blank');}
+function renderHist(){let hist=JSON.parse(localStorage.getItem('orc_hist')||'[]');document.getElementById('lista-hist').innerHTML=hist.length?hist.map((h,i)=>`<div class="hist-card"><b>${h.serv} - ${h.cli}</b><br>${h.data} - ${h.area} m² - TOTAL: <b>R$ ${h.total.toFixed(2).replace('.',',')}</b><br>${h.modo==='cliente'?'👤 Cliente compra material':'🧰 Eu levo material'} - ${h.status}<br><div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="btn-pendente" onclick="setStatus(${i},'Pendente')">Pendente</button><button class="btn-aprovado" onclick="setStatus(${i},'Aprovado')">✓ Aprovado</button><button class="btn-pago" onclick="setStatus(${i},'Pago')">Pago</button><button class="btn-wpp" onclick="enviarHist(${i})">WhatsApp</button><button class="btn-excluir" onclick="excluirHist(${i})">Excluir</button></div></div>`).join(''):'<p>Nenhum orçamento ainda.</p>';}
+function setStatus(i,s){let h=JSON.parse(localStorage.getItem('orc_hist')||'[]');h[i].status=s;localStorage.setItem('orc_hist',JSON.stringify(h));renderHist();}
+function excluirHist(i){if(!confirm('Excluir?'))return;let h=JSON.parse(localStorage.getItem('orc_hist')||'[]');h.splice(i,1);localStorage.setItem('orc_hist',JSON.stringify(h));renderHist();}
+function enviarHist(i){let h=JSON.parse(localStorage.getItem('orc_hist')||'[]')[i];ultimo=h;enviarWpp();}
+function limparHist(){if(!confirm('Limpar tudo?'))return;localStorage.removeItem('orc_hist');renderHist();}
+renderHist();calcOrc();
+</script></body></html>
